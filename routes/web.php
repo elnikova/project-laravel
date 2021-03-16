@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Mail\UserContactUsMail;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -21,20 +23,24 @@ use Illuminate\Support\Facades\Auth;
     return view('welcome');
 });*/
 
-/*Route::get('/', 'MainController@index'); - до 8 версии*/
 
 Route::get('/', [MainController::class, 'index']);
+
+Route::get('/contacts', [MailController::class, 'contacts']);
+Route::post('/send-email', [MailController::class, 'send']);
+
 
 Auth::routes();
 
 // Route::middleware(['auth'])->prefix('admin')->group(function(){
-//     Route::get('/', [AdminController::class, 'index']);
-//     //Route::resource('/user', [UserController::class]);
+//Route::get('/admin', [AdminController::class, 'index']);
+//Route::resource('admin/user', [UserController::class, 'index']);
 // });
 
 
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
 //     \UniSharp\LaravelFilemanager\Lfm::routes();
 // });
+
 
 
