@@ -16,13 +16,10 @@ class MailController extends Controller
 
     public function send(ContactRequest $request)
     { 
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
-        ];
+        $data = $request->validated();
+        $to = env('MAIL_TO_ADDRESS');
         
-        Mail::to('elnikova.dariya@gmail.com')->send(new UserContactUsMail($data));
+        Mail::to($to)->send(new UserContactUsMail($data));
         return back()->with('success', 'Thank! Your email has been successfully sent!');
     }
 }

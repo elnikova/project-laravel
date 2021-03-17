@@ -30,6 +30,6 @@ class UserContactUsMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.contact');
+        return $this->markdown('email.contact');
     }
 }
