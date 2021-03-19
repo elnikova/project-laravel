@@ -29,14 +29,6 @@ Route::get('/', [MainController::class, 'index']);
 Route::get('/contacts', [MailController::class, 'contacts']);
 Route::post('/send-email', [MailController::class, 'send']);
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
-
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
-});
-
 
 Auth::routes();
 
