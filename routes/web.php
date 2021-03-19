@@ -7,6 +7,7 @@ use App\Http\Controllers\MainController;
 use App\Mail\UserContactUsMail;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/', [MainController::class, 'index']);
 
 Route::get('/contacts', [MailController::class, 'contacts']);
 Route::post('/send-email', [MailController::class, 'send']);
+
+Route::get( '/reviews',  [ReviewController::class, 'index']);
+Route::post('/reviews',  [ReviewController::class, 'saveReview']);
 
 
 Auth::routes();

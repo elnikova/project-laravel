@@ -12,26 +12,19 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
-        if(! $data){
-            return response()->json([
-                'message' => 'The given data was invalid.',
-            ], 422);
-        }else{
-            $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            ]);
+        $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        ]);
             
         return response()->json($user);
-        }
-
         
     }
 
