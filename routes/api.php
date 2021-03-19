@@ -29,5 +29,5 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //Route::apiResource('/reviews', ReviewApiController::class);
 
-Route::get('/reviews', [ReviewApiController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/reviews', [ReviewApiController::class, 'index']);
 
